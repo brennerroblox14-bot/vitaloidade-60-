@@ -128,6 +128,10 @@
       margin: 0 auto 36px;
       line-height: 1.8;
     }
+    .hero-img-wrap {
+      margin: 0 auto 36px;
+      max-width: 380px;
+    }
     .hero-illustration {
       width: 100%;
       max-width: 380px;
@@ -399,7 +403,6 @@
       border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
       font-size: 22px;
-      background: #EAF5EC;
     }
     .test-name { font-size: 15px; font-weight: 800; color: var(--text); }
     .verified { font-size: 12px; color: var(--green); font-weight: 700; }
@@ -426,7 +429,6 @@
       cursor: pointer;
       display: flex;
       justify-content: space-between;
-      align-items: center;
     }
 
     /* ── FOOTER ── */
@@ -473,7 +475,7 @@
 <section class="hero">
   <div class="hero-badge">✨ Criado por especialistas para a mulher madura</div>
   <h1>Recupere a sua <em>liberdade e disposição</em> para aproveitar o melhor da vida.</h1>
-  <p class="sub">Um método simples de 15 minutos por dia, criado para quem quer fortalecer as pernas, aliviar as dores e ter energia de sobra.</p>
+  <p class="sub">Um método simples de 15 minutos por dia para fortalecer o corpo e aliviar as dores.</p>
 
   <div class="hero-illustration">
     <svg viewBox="0 0 300 280" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -490,50 +492,24 @@
 
 <section class="dor">
   <div class="section-inner">
-    <span class="section-label">Você se identifica?</span>
     <h2 class="section-title">Seu corpo parece ter parado no tempo?</h2>
     <div class="pain-grid">
       <div class="pain-card"><span class="pain-icon">🦵</span><p>Pernas fracas e cansadas</p></div>
       <div class="pain-card"><span class="pain-icon">🪑</span><p>Dificuldade para levantar</p></div>
-      <div class="pain-card"><span class="pain-icon">🚶‍♀️</span><p>Cansaço constante</p></div>
+      <div class="pain-card"><span class="pain-icon">🚶‍♀️</span><p>Cansaço ao caminhar</p></div>
       <div class="pain-card"><span class="pain-icon">🌙</span><p>Dores que atrapalham o sono</p></div>
-    </div>
-  </div>
-</section>
-
-<section class="testimonials">
-  <div class="section-inner">
-    <h2 class="section-title" style="text-align:center;">O que elas estão dizendo</h2>
-    <div class="test-grid">
-      <div class="test-card">
-        <div class="test-stars">★★★★★</div>
-        <p class="test-text">"Em 2 semanas já conseguia subir a escada sem me segurar na parede. Minha disposição é outra!"</p>
-        <div class="test-author">
-          <div class="test-avatar">👵</div>
-          <div><div class="test-name">Maria G., 67 anos</div><div class="verified">✓ Compra verificada</div></div>
-        </div>
-      </div>
-      <div class="test-card">
-        <div class="test-stars">★★★★★</div>
-        <p class="test-text">"Os vídeos são fáceis de seguir. Sinto meu corpo muito mais firme e leve."</p>
-        <div class="test-author">
-          <div class="test-avatar" style="background:#E8F3FA;">🌸</div>
-          <div><div class="test-name">Neusa A., 63 anos</div><div class="verified">✓ Compra verificada</div></div>
-        </div>
-      </div>
     </div>
   </div>
 </section>
 
 <section class="offer" id="oferta">
   <div class="section-inner text-center">
-    <span class="section-label" style="background:rgba(255,255,255,.15);color:#FFE88A;">💛 Oferta Especial</span>
     <h2 class="section-title">Comece hoje por um valor simbólico</h2>
     <div class="offer-box">
       <div class="urgency-tag">⏳ Oferta por tempo limitado</div>
       <div class="price-old">De R$ 97,00</div>
       <div class="price-new"><sup>R$</sup>9<span>,90</span></div>
-      <div class="price-daily">Acesso vitalício imediato 💚</div>
+      <div class="price-daily">Acesso vitalício ao método completo 💚</div>
       <a href="#" class="btn-offer">✨ COMPRAR AGORA POR R$ 9,90</a>
       <div class="guarantee-badge">🛡️ Garantia de 7 dias ou seu dinheiro de volta</div>
     </div>
@@ -543,12 +519,8 @@
 <section class="faq">
   <div class="section-inner">
     <h2 class="section-title">Dúvidas Frequentes</h2>
-    <div class="faq-item">
-      <button class="faq-q">Preciso de experiência com exercícios? <span>▼</span></button>
-    </div>
-    <div class="faq-item">
-      <button class="faq-q">Como vou receber o material? <span>▼</span></button>
-    </div>
+    <div class="faq-item"><button class="faq-q">Como recebo o acesso? <span>▼</span></button></div>
+    <div class="faq-item"><button class="faq-q">Preciso de equipamentos? <span>▼</span></button></div>
     <p style="text-align:center; margin-top:30px; font-weight:700;">
        Ainda tem dúvidas? <a href="https://wa.me/55DDDSEUNUMERO" target="_blank" style="color:#25d366;">Fale conosco pelo WhatsApp</a>
     </p>
@@ -557,7 +529,7 @@
 
 <footer>
   <div class="footer-logo">Vitalidade <span>60+</span></div>
-  <p>&copy; 2026 Método Vitalidade 60+. Todos os direitos reservados.</p>
+  <p>&copy; 2026 Todos os direitos reservados.</p>
 </footer>
 
 <a href="https://wa.me/55DDDSEUNUMERO" class="whatsapp-float" target="_blank">
