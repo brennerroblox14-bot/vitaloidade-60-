@@ -194,21 +194,26 @@
       align-items: center;
     }
 
-    input {
+    textarea {
       width: 100%;
       min-width: 0;
+      min-height: 132px;
+      resize: vertical;
       border: 1px solid var(--line);
       border-radius: 14px;
       background: #ffffff;
       color: var(--text);
       padding: 16px;
-      font-size: 18px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 15px;
       font-weight: 800;
-      letter-spacing: 0.02em;
+      line-height: 1.45;
+      letter-spacing: 0;
       outline: none;
+      overflow-wrap: anywhere;
     }
 
-    input:focus {
+    textarea:focus {
       border-color: var(--accent);
       box-shadow: 0 0 0 4px rgba(15, 143, 117, 0.14);
     }
@@ -369,10 +374,10 @@
           <span class="status">Disponível agora</span>
         </div>
 
-        <label for="pixKey">Chave Pix</label>
+        <label for="pixKey">Pix copia e cola</label>
         <div class="copy-row">
-          <input id="pixKey" type="text" value="17992062959" readonly />
-          <button id="copyButton" type="button">Copiar chave</button>
+          <textarea id="pixKey" readonly>00020101021126580014br.gov.bcb.pix01368fd81c76-0252-4cc2-b0c8-c0da89425ab152040000530398654049.905802BR5918BRENNER B DE SOUZA6007OLIMPIA62070503***63046202</textarea>
+          <button id="copyButton" type="button">Copiar Pix</button>
         </div>
         <p id="copyMessage" class="message" role="status" aria-live="polite"></p>
 
@@ -416,18 +421,18 @@
 
     copyButton.addEventListener("click", async () => {
       try {
-        await navigator.clipboard.writeText(pixKey.value);
-        copyMessage.textContent = "Chave Pix copiada com sucesso.";
+        await navigator.clipboard.writeText(pixKey.value.trim());
+        copyMessage.textContent = "Pix copia e cola copiado com sucesso.";
         copyButton.textContent = "Copiado";
       } catch (error) {
         pixKey.select();
         document.execCommand("copy");
-        copyMessage.textContent = "Chave Pix copiada.";
+        copyMessage.textContent = "Pix copia e cola copiado.";
         copyButton.textContent = "Copiado";
       }
 
       window.setTimeout(() => {
-        copyButton.textContent = "Copiar chave";
+        copyButton.textContent = "Copiar Pix";
       }, 2200);
     });
   </script>
