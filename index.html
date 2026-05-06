@@ -1,218 +1,435 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>O Interruptor do Cortisol - Protocolo 28 Dias</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@600;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary: #2d4221; /* Verde Floresta Suave */
-            --accent: #bc6c25;  /* Terracota */
-            --bg: #fefae0;      /* Creme */
-            --white: #ffffff;
-            --text: #283618;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pagamento Seguro via Pix</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #eef4f1;
+      --surface: #ffffff;
+      --surface-soft: #f7faf8;
+      --text: #14231e;
+      --muted: #64756e;
+      --line: #dfe8e4;
+      --accent: #0f8f75;
+      --accent-dark: #08715d;
+      --accent-soft: #dcf7ef;
+      --warning: #8a5b00;
+      --shadow: 0 22px 60px rgba(26, 51, 43, 0.14);
+    }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Montserrat', sans-serif;
-            scroll-behavior: smooth;
-        }
+    * {
+      box-sizing: border-box;
+    }
 
-        body {
-            background-color: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(15, 143, 117, 0.14), transparent 34rem),
+        linear-gradient(135deg, #eef4f1 0%, #f8fbfa 44%, #e8f2ee 100%);
+      color: var(--text);
+      display: grid;
+      place-items: center;
+      padding: 32px 16px;
+    }
 
-        /* --- ANIMAÇÕES --- */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+    main {
+      width: min(960px, 100%);
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid rgba(255, 255, 255, 0.78);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      backdrop-filter: blur(18px);
+    }
 
-        .reveal {
-            animation: fadeIn 1s ease-out forwards;
-        }
+    .brand-panel {
+      padding: 40px;
+      background: linear-gradient(160deg, #0b6f62 0%, #0f8f75 56%, #32b28e 100%);
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 560px;
+    }
 
-        /* --- HERO SECTION --- */
-        header {
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
-                        url('https://images.unsplash.com/photo-1518152006812-edab29b069ac?auto=format&fit=crop&w=1920&q=80');
-            background-size: cover;
-            background-position: center;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: var(--white);
-            padding: 20px;
-        }
+    .badge {
+      width: fit-content;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.32);
+      background: rgba(255, 255, 255, 0.14);
+      padding: 9px 13px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+    }
 
-        .hero-content h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2.5rem, 8vw, 4rem);
-            margin-bottom: 20px;
-            line-height: 1.1;
-        }
+    .shield {
+      width: 18px;
+      height: 18px;
+      display: inline-grid;
+      place-items: center;
+      border-radius: 50%;
+      background: #ffffff;
+      color: var(--accent-dark);
+      font-size: 12px;
+    }
 
-        .hero-content p {
-            font-size: clamp(1.1rem, 3vw, 1.5rem);
-            margin-bottom: 35px;
-            max-width: 700px;
-            margin-inline: auto;
-        }
+    h1 {
+      margin: 54px 0 14px;
+      font-size: clamp(34px, 5vw, 52px);
+      line-height: 1;
+      letter-spacing: 0;
+    }
 
-        /* --- BOTÃO ESTILO PULSANTE --- */
-        .cta-main {
-            display: inline-block;
-            background-color: #25d366;
-            color: white;
-            padding: 22px 45px;
-            border-radius: 60px;
-            text-decoration: none;
-            font-weight: 800;
-            font-size: 1.2rem;
-            text-transform: uppercase;
-            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
-            transition: all 0.3s ease;
-            animation: pulse-green 2s infinite;
-        }
+    .lead {
+      margin: 0;
+      max-width: 34ch;
+      color: rgba(255, 255, 255, 0.86);
+      line-height: 1.6;
+      font-size: 16px;
+    }
 
-        @keyframes pulse-green {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
+    .trust-list {
+      display: grid;
+      gap: 14px;
+      margin: 38px 0 0;
+      padding: 0;
+      list-style: none;
+    }
 
-        .cta-main:hover {
-            background-color: #128c7e;
-            transform: translateY(-3px);
-        }
+    .trust-list li {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 14px;
+    }
 
-        /* --- SEÇÃO BENEFÍCIOS --- */
-        .benefits {
-            padding: 100px 20px;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
+    .check {
+      flex: 0 0 24px;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+    }
 
-        .section-title {
-            text-align: center;
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 50px;
-        }
+    .payment-panel {
+      padding: 40px;
+      background: var(--surface);
+    }
 
-        .grid-benefits {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
+    .section-title {
+      margin: 0 0 8px;
+      font-size: 24px;
+      letter-spacing: 0;
+    }
 
-        .benefit-card {
-            background: var(--white);
-            padding: 40px;
-            border-radius: 20px;
-            text-align: center;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
-            border-bottom: 5px solid var(--accent);
-            transition: 0.3s;
-        }
+    .section-subtitle {
+      margin: 0 0 28px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
 
-        .benefit-card:hover {
-            transform: translateY(-10px);
-        }
+    .pix-card {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--surface-soft);
+      padding: 22px;
+    }
 
-        .benefit-card i {
-            font-size: 3rem;
-            display: block;
-            margin-bottom: 20px;
-        }
+    .pix-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
 
-        .benefit-card h3 {
-            margin-bottom: 15px;
-            color: var(--primary);
-        }
+    .pix-mark {
+      width: 52px;
+      height: 52px;
+      border-radius: 15px;
+      background: var(--accent-soft);
+      display: grid;
+      place-items: center;
+      color: var(--accent-dark);
+      font-weight: 900;
+      font-size: 22px;
+    }
 
-        /* --- BOTÃO WHATSAPP FIXO --- */
-        .wp-fixed {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 65px;
-            height: 65px;
-            background-color: #25d366;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            z-index: 1000;
-        }
+    .status {
+      border-radius: 999px;
+      color: var(--accent-dark);
+      background: var(--accent-soft);
+      padding: 8px 12px;
+      font-size: 12px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
 
-        .wp-fixed svg {
-            width: 35px;
-            fill: white;
-        }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
 
-        footer {
-            background: var(--primary);
-            color: var(--white);
-            padding: 50px 20px;
-            text-align: center;
-            font-size: 0.9rem;
-        }
-    </style>
+    .copy-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      align-items: center;
+    }
+
+    input {
+      width: 100%;
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #ffffff;
+      color: var(--text);
+      padding: 16px;
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px rgba(15, 143, 117, 0.14);
+    }
+
+    button {
+      border: 0;
+      border-radius: 14px;
+      background: var(--accent);
+      color: #ffffff;
+      cursor: pointer;
+      min-height: 54px;
+      padding: 0 20px;
+      font-size: 15px;
+      font-weight: 800;
+      transition: transform 160ms ease, background 160ms ease, box-shadow 160ms ease;
+      box-shadow: 0 12px 22px rgba(15, 143, 117, 0.2);
+    }
+
+    button:hover {
+      background: var(--accent-dark);
+      transform: translateY(-1px);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    .message {
+      min-height: 22px;
+      margin: 12px 0 0;
+      color: var(--accent-dark);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .steps {
+      display: grid;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      gap: 12px;
+      align-items: start;
+      padding: 14px;
+      border-radius: 14px;
+      background: #ffffff;
+      border: 1px solid var(--line);
+    }
+
+    .step-number {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: #edf5f2;
+      color: var(--accent-dark);
+      font-weight: 900;
+    }
+
+    .step strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 14px;
+    }
+
+    .step span {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .notice {
+      margin-top: 22px;
+      border-radius: 14px;
+      padding: 14px 16px;
+      color: var(--warning);
+      background: #fff8e7;
+      border: 1px solid #f3dfad;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    footer {
+      margin-top: 24px;
+      color: var(--muted);
+      font-size: 12px;
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 820px) {
+      body {
+        align-items: start;
+        padding: 18px;
+      }
+
+      main {
+        grid-template-columns: 1fr;
+        border-radius: 20px;
+      }
+
+      .brand-panel {
+        min-height: auto;
+        padding: 30px 24px;
+      }
+
+      h1 {
+        margin-top: 34px;
+      }
+
+      .payment-panel {
+        padding: 28px 22px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .copy-row {
+        grid-template-columns: 1fr;
+      }
+
+      button {
+        width: 100%;
+      }
+
+      .pix-header {
+        align-items: flex-start;
+      }
+    }
+  </style>
 </head>
 <body>
+  <main>
+    <section class="brand-panel" aria-label="Pagamento seguro">
+      <div>
+        <span class="badge"><span class="shield">✓</span> Ambiente de pagamento</span>
+        <h1>Pagamento via Pix</h1>
+        <p class="lead">Uma forma rápida e segura para concluir seu pagamento. Copie a chave Pix, pague pelo seu banco e confirme os dados antes de finalizar.</p>
+      </div>
 
-    <header>
-        <div class="hero-content reveal">
-            <h1>Sente-se Cansada e Inchada Todo Santo Dia?</h1>
-            <p>O "Interruptor do Cortisol" é o caminho simples para mulheres que querem recuperar o sono e a leveza em apenas 28 dias.</p>
-            <a href="https://wa.me/5517999999999?text=Oi! quero saber como funciona o protocolo de 28 dias." class="cta-main">Me ajude a recuperar minha energia 🌸</a>
-        </div>
-    </header>
-
-    <section class="benefits">
-        <h2 class="section-title">Como o Protocolo vai te transformar:</h2>
-        <div class="grid-benefits">
-            <div class="benefit-card">
-                <i>🔋</i>
-                <h3>Energia Constante</h3>
-                <p>Chega de "apagar" no sofá às 20h. Recupere a disposição para cuidar de você e da sua família.</p>
-            </div>
-            <div class="benefit-card">
-                <i>🌙</i>
-                <h3>Sono Profundo</h3>
-                <p>Aprenda a desligar a mente ansiosa e acorde realmente descansada e pronta para o dia.</p>
-            </div>
-            <div class="benefit-card">
-                <i>💃</i>
-                <h3>Corpo Leve</h3>
-                <p>Reduza o inchaço causado pelo estresse crônico (o famoso cortisol alto) de forma natural.</p>
-            </div>
-        </div>
+      <ul class="trust-list" aria-label="Garantias">
+        <li><span class="check">✓</span> Pagamento direto pelo aplicativo do seu banco</li>
+        <li><span class="check">✓</span> Chave Pix clara para conferência</li>
+        <li><span class="check">✓</span> Página simples, objetiva e sem distrações</li>
+      </ul>
     </section>
 
-    <footer>
-        <p><strong>O Interruptor do Cortisol</strong></p>
-        <p>Desenvolvido para mulheres que buscam equilíbrio hormonal e vitalidade.</p>
-        <p style="margin-top: 20px; opacity: 0.7;">© 2026 - Todos os direitos reservados.</p>
-    </footer>
+    <section class="payment-panel" aria-label="Dados do Pix">
+      <h2 class="section-title">Dados para pagamento</h2>
+      <p class="section-subtitle">Use a chave abaixo no Pix copia e cola ou na opção de pagamento por chave Pix do seu banco.</p>
 
-    <a href="https://wa.me/5517992062959?text=Olá! Pode me explicar como funciona o método?" class="wp-fixed" target="_blank">
-        <svg viewBox="0 0 32 32">
-            <path d="M16 0c-8.837 0-16 7.163-16 16 0 2.825 0.733 5.48 2.01 7.79l-2.01 7.21 7.387-1.94c2.33 1.246 5.003 1.94 7.853 1.94 8.837 0 16-7.163 16-16s-7.163-16-16-16zM16 29.375c-2.482 0-4.807-0.655-6.812-1.791l-0.488-0.276-4.37 1.147 1.168-4.177-0.303-0.482c-1.252-1.997-1.97-4.354-1.97-6.796 0-7.070 5.755-12.825 12.825-12.825s12.825 5.755 12.825 12.825-5.755 12.825-12.825 12.825zM22.547 19.341c-0.358-0.179-2.116-1.044-2.444-1.163s-0.567-0.179-0.806 0.179c-0.239 0.358-0.925 1.163-1.134 1.402s-0.418 0.269-0.776 0.090c-1.503-0.751-2.522-1.309-3.535-3.054-0.267-0.461 0.267-0.428 0.764-1.421 0.083-0.167 0.042-0.313-0.021-0.448s-0.567-1.372-0.776-1.88c-0.204-0.494-0.411-0.426-0.567-0.434s-0.328-0.010-0.507-0.010c-0.179 0-0.477 0.067-0.731 0.343s-0.955 0.933-0.955 2.275 0.985 2.641 1.119 2.82c0.134 0.179 1.938 2.959 4.695 4.15 0.656 0.283 1.168 0.452 1.568 0.579 0.659 0.21 1.259 0.18 1.733 0.109 0.53-0.079 1.626-0.665 1.85-1.306s0.224-1.194 0.157-1.306c-0.067-0.113-0.246-0.179-0.604-0.358z"></path>
-        </svg>
-    </a>
+      <div class="pix-card">
+        <div class="pix-header">
+          <div class="pix-mark">Pix</div>
+          <span class="status">Disponível agora</span>
+        </div>
 
+        <label for="pixKey">Chave Pix</label>
+        <div class="copy-row">
+          <input id="pixKey" type="text" value="17992062959" readonly />
+          <button id="copyButton" type="button">Copiar chave</button>
+        </div>
+        <p id="copyMessage" class="message" role="status" aria-live="polite"></p>
+
+        <div class="steps" aria-label="Como pagar">
+          <div class="step">
+            <span class="step-number">1</span>
+            <div>
+              <strong>Abra seu banco</strong>
+              <span>Entre no aplicativo e escolha a opção Pix.</span>
+            </div>
+          </div>
+          <div class="step">
+            <span class="step-number">2</span>
+            <div>
+              <strong>Informe a chave</strong>
+              <span>Cole a chave Pix e confira os dados antes de pagar.</span>
+            </div>
+          </div>
+          <div class="step">
+            <span class="step-number">3</span>
+            <div>
+              <strong>Finalize com segurança</strong>
+              <span>Confirme o pagamento somente se as informações estiverem corretas.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="notice">
+          Antes de concluir, confira no aplicativo do banco se o destinatário e o valor estão corretos.
+        </div>
+      </div>
+
+      <footer>Pagamento processado pelo app do seu banco. Esta página apenas apresenta a chave Pix para transferência.</footer>
+    </section>
+  </main>
+
+  <script>
+    const pixKey = document.getElementById("pixKey");
+    const copyButton = document.getElementById("copyButton");
+    const copyMessage = document.getElementById("copyMessage");
+
+    copyButton.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(pixKey.value);
+        copyMessage.textContent = "Chave Pix copiada com sucesso.";
+        copyButton.textContent = "Copiado";
+      } catch (error) {
+        pixKey.select();
+        document.execCommand("copy");
+        copyMessage.textContent = "Chave Pix copiada.";
+        copyButton.textContent = "Copiado";
+      }
+
+      window.setTimeout(() => {
+        copyButton.textContent = "Copiar chave";
+      }, 2200);
+    });
+  </script>
 </body>
 </html>
